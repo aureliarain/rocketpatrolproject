@@ -5,7 +5,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
 
         scene.add.existing(this);   // add to existing, displayList, updateList
         this.isFiring = false;      // track rocket's firing status
-        this.movespeed = 2;         // pixels per frame
+        this.moveSpeed = 2;         // pixels per frame
     }
 
     update() {
@@ -14,7 +14,7 @@ class Rocket extends Phaser.GameObjects.Sprite {
             if(keyLEFT.isDown && this.x >= borderUISize + this.width) {
                 this.x -= this.moveSpeed;
             } else if(keyRIGHT.isDown && this.x <= game.config.width - borderUISize - this.width) {
-                this.x += this.movespeed;
+                this.x += this.moveSpeed;
             }
         }
         // fire button
@@ -30,5 +30,11 @@ class Rocket extends Phaser.GameObjects.Sprite {
             this.isFiring = false;
             this.y = game.config.height - borderUISize - borderPadding;
         }
+    }
+
+    reset() {
+        // reset rocket to ground
+        this.isFiring = false;
+        this.y = game.config.height - borderUISize - borderPadding;
     }
 }
